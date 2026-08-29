@@ -34,9 +34,14 @@ export const useCartStore = defineStore('cart', () => {
     persist()
   }
 
+  function clearAll() {
+    items.value = {}
+    persist()
+  }
+
   function persist() {
     localStorage.setItem('torque-cart', JSON.stringify(items.value))
   }
 
-  return { items, count, lines, subtotal, add, remove, clear, quantity }
+  return { items, count, lines, subtotal, add, remove, clear, clearAll, quantity }
 })

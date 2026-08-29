@@ -13,7 +13,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico'],
+      includeAssets: ['favicon.ico', 'torque-icon.svg'],
       manifest: {
         name: 'Torque — Fluids for the drive',
         short_name: 'Torque',
@@ -22,6 +22,10 @@ export default defineConfig({
         background_color: '#0B0D10',
         display: 'standalone',
         start_url: '/',
+        icons: [
+          { src: '/torque-icon.svg', sizes: '192x192', type: 'image/svg+xml', purpose: 'any maskable' },
+          { src: '/torque-icon.svg', sizes: '512x512', type: 'image/svg+xml', purpose: 'any maskable' },
+        ],
       },
       workbox: { navigateFallback: '/' },
     }),
