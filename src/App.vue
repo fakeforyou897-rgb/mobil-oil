@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import { Bell, CarFront, Menu, Moon, Search, ShoppingBag, Sparkles, Sun, UserRound, X } from 'lucide-vue-next'
+import AppFooter from '@/components/layout/AppFooter.vue'
 import { useCartStore } from '@/stores/cart'
 import { useUiStore } from '@/stores/ui'
 
@@ -55,6 +56,8 @@ const navItems = [
         <Transition name="fade" mode="out-in"><component :is="Component" /></Transition>
       </RouterView>
     </main>
+
+    <AppFooter />
 
     <nav class="fixed bottom-0 left-0 right-0 z-40 border-t border-white/[0.08] bg-[#111419]/95 px-5 pb-[max(12px,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl sm:hidden">
       <div class="mx-auto flex max-w-md items-center justify-around">
