@@ -8,7 +8,10 @@ describe('ProductCard', () => {
   it('renders product details and supports adding to cart', async () => {
     const wrapper = mount(ProductCard, {
       props: { product: products[0] },
-      global: { plugins: [createPinia()] },
+      global: {
+        plugins: [createPinia()],
+        stubs: { RouterLink: { template: '<a><slot /></a>' } },
+      },
     })
 
     expect(wrapper.text()).toContain('EDGE Titanium 5W-30')

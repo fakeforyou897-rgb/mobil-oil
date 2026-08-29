@@ -33,7 +33,7 @@ const navItems = [
         </nav>
 
         <div class="flex items-center gap-2 sm:gap-3">
-          <button aria-label="Search" class="hidden h-10 w-10 place-items-center rounded-full text-[#8E96A3] transition hover:bg-white/5 hover:text-white sm:grid"><Search :size="19" /></button>
+          <RouterLink to="/search" aria-label="Search" class="hidden h-10 w-10 place-items-center rounded-full text-[#8E96A3] transition hover:bg-white/5 hover:text-white sm:grid"><Search :size="19" /></RouterLink>
           <button aria-label="Notifications" class="hidden h-10 w-10 place-items-center rounded-full text-[#8E96A3] transition hover:bg-white/5 hover:text-white sm:grid"><Bell :size="19" /></button>
           <RouterLink to="/profile" aria-label="Profile" class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-[#14171C] text-[#8E96A3] transition hover:border-white/20 hover:text-white"><UserRound :size="18" /></RouterLink>
           <RouterLink to="/cart" aria-label="Cart" class="relative grid h-10 w-10 place-items-center rounded-full bg-[#FF6B00] text-[#0B0D10] transition hover:bg-[#ff8129]"><ShoppingBag :size="18" stroke-width="2.5" /><span v-if="cartLabel" class="absolute -right-1 -top-1 grid h-[18px] min-w-[18px] place-items-center rounded-full border-2 border-[#0B0D10] bg-[#58D5E6] px-1 text-[9px] font-bold">{{ cartLabel }}</span></RouterLink>

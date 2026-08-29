@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { ArrowDownUp, ChevronDown, Filter, LayoutGrid, List, Search, SlidersHorizontal, X } from 'lucide-vue-next'
+import { useRoute } from 'vue-router'
 import ProductCard from '@/components/product/ProductCard.vue'
 import { products } from '@/data/products'
 
-const query = ref('')
+const route = useRoute()
+const query = ref(String(route.query.q ?? ''))
 const activeFilter = ref('All')
 const filters = ['All', '5W-30', '5W-40', '0W-20', 'Full Synthetic']
 const showFilters = ref(false)

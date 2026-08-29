@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ArrowRight, CarFront, ChevronRight, CircleCheck, Gauge, ShieldCheck, SlidersHorizontal, Sparkles, Star, Wrench } from 'lucide-vue-next'
-import { RouterLink } from 'vue-router'
+import { ArrowRight, CarFront, ChevronRight, CircleCheck, Gauge, Search, ShieldCheck, SlidersHorizontal, Sparkles, Star, Wrench } from 'lucide-vue-next'
+import { RouterLink, useRouter } from 'vue-router'
 import ProductCard from '@/components/product/ProductCard.vue'
 import { products } from '@/data/products'
 
+const router = useRouter()
+const search = ref('')
 const selectedCategory = ref('All')
+function searchProducts() { if (search.value.trim()) router.push({ path: '/shop', query: { q: search.value.trim() } }) }
 const categories = [
   { label: 'Engine oil', icon: '◉' },
   { label: 'Transmission', icon: '◆' },
@@ -24,9 +27,10 @@ const featuredProducts = products.slice(0, 4)
         <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/25 bg-[#FF6B00]/[0.08] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#FF9145]"><Sparkles :size="13" /> Precision fluids for every drive</div>
         <h1 class="display-font max-w-xl text-[clamp(3.25rem,9vw,7.2rem)] font-bold leading-[0.91] tracking-[-0.075em] text-white">Keep your <span class="text-[#FF6B00]">drive</span><br />in motion<span class="text-[#FF6B00]">.</span></h1>
         <p class="mt-7 max-w-md text-base leading-relaxed text-[#8E96A3] sm:text-lg">Premium oils, fluids and filters matched to your car. Less guesswork. More miles.</p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <form class="mt-7 flex max-w-md items-center rounded-xl border border-white/10 bg-[#14171C] p-1.5 focus-within:border-[#FF6B00]/60" @submit.prevent="searchProducts"><Search :size="17" class="ml-3 shrink-0 text-[#68707D]" /><input v-model="search" type="search" placeholder="Search oil, brand or viscosity" class="h-10 min-w-0 flex-1 bg-transparent px-3 text-sm text-white outline-none placeholder:text-[#68707D]" /><button class="rounded-lg bg-white/10 px-3 py-2 text-[11px] font-bold text-white transition hover:bg-[#FF6B00] hover:text-[#0B0D10]">Search</button></form>
+        <div class="mt-4 flex flex-col gap-3 sm:flex-row">
           <RouterLink to="/shop" class="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B00] px-5 text-sm font-bold text-[#0B0D10] transition hover:bg-[#ff8129] active:scale-[0.98]">Find your oil <ArrowRight :size="17" /></RouterLink>
-          <button class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-5 text-sm font-semibold text-white transition hover:bg-white/[0.07]"><CarFront :size="17" class="text-[#58D5E6]" /> Select your vehicle</button>
+          <RouterLink to="/vehicle" class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-5 text-sm font-semibold text-white transition hover:bg-white/[0.07]"><CarFront :size="17" class="text-[#58D5E6]" /> Select your vehicle</RouterLink>
         </div>
         <div class="mt-10 flex items-center gap-5 text-[11px] text-[#8E96A3]"><div class="flex -space-x-2"><span class="grid h-7 w-7 place-items-center rounded-full border-2 border-[#0B0D10] bg-[#D49A7D] text-[9px] font-bold text-[#2A1710]">JM</span><span class="grid h-7 w-7 place-items-center rounded-full border-2 border-[#0B0D10] bg-[#9AB5C8] text-[9px] font-bold text-[#12202A]">AK</span><span class="grid h-7 w-7 place-items-center rounded-full border-2 border-[#0B0D10] bg-[#C9B18A] text-[9px] font-bold text-[#2A2115]">RL</span></div><span><strong class="text-white">12,000+</strong> drivers trust Torque</span></div>
       </div>

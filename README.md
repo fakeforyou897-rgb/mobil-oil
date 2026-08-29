@@ -1,45 +1,57 @@
-# fusion-vue-tailwind-starter
+# Torque — Motor Oil Marketplace
 
-This template should help get you started developing with Vue 3 in Vite.
+Torque is a mobile-first marketplace for premium motor oils, lubricants, filters, and vehicle fluids. It is designed around quick fitment discovery: search by brand or viscosity, or save a vehicle and let the garage surface compatible products.
 
-## Recommended IDE Setup
+## Stack
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3 + TypeScript with `<script setup lang="ts">`
+- Vite 7
+- Tailwind CSS 4 with `@tailwindcss/vite`
+- Vue Router 4
+- Pinia with localStorage persistence for cart, vehicle, and preferences
+- Vue Query provider for API-ready data fetching
+- VueUse Motion provider and CSS view transitions
+- Lucide Vue icons
+- VeeValidate-compatible Zod validation foundation
+- Vite PWA with an offline shell and auto-updating service worker
+- Vitest + Vue Test Utils
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Run locally
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+The repository currently uses npm and `package-lock.json` so the setup is reproducible in the existing project environment. Production checks:
 
 ```sh
+npm run type-check
+npm run lint
+npm run test:unit -- --run
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Routes
 
-```sh
-npm run test:unit
-```
+- `/` — Discover home with hero, categories, featured products, and vehicle matching CTA
+- `/onboarding` — Three-step first-use introduction
+- `/shop` — Searchable catalog with viscosity/base filters and grid/list views
+- `/search` — Recent searches and product suggestions
+- `/product/:slug` — Product gallery, specs, compatibility status, and add-to-bag flow
+- `/vehicle` — Make, model, year, and engine selector
+- `/cart` — Persistent bag with quantities, totals, and empty state
+- `/checkout` — Validated delivery/payment form and confirmation state
+- `/profile` — Garage, account snapshot, orders, saved products, and settings entry points
 
-### Lint with [ESLint](https://eslint.org/)
+## Architecture
 
-```sh
-npm run lint
-```
+- `src/pages` contains route-level views.
+- `src/components/product` contains reusable product presentation.
+- `src/data` contains realistic local catalog data for the MVP.
+- `src/stores` owns persistent cart, vehicle, and user preference state.
+- `src/types` contains domain models.
+- `src/lib` contains pure formatting and validation utilities.
+- `src/router` owns route definitions and navigation.
+
+The visual system is defined in `src/assets/base.css`, `src/assets/main.css`, and `tailwind.config.js`. Dark surfaces, orange actions, cyan fitment states, rounded cards, and compact display typography are shared across all screens.
